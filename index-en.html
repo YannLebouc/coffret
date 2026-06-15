@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coffret — le bundle « compose ta boîte » que Shopify ne sait pas faire</title>
+<title>Coffret — the “build your own box” bundle Shopify can’t do properly</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#1C1B20;
-    --paper:#EFEAE1;      /* greige chaud, pas le cream par défaut */
+    --paper:#EFEAE1;
     --card:#FFFFFF;
-    --kraft:#CBA47B;      /* matière carton/boîte */
+    --kraft:#CBA47B;
     --kraft-d:#A9824F;
-    --ribbon:#9E2B45;     /* unique accent fort : le ruban */
+    --ribbon:#9E2B45;
     --ribbon-d:#7E1F36;
     --muted:#6B6760;
     --line:#DDD6CB;
@@ -29,7 +29,6 @@
   .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ribbon-d)}
   h1,h2,h3{line-height:1.04;letter-spacing:-0.02em;font-weight:800}
 
-  /* top */
   .top{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
   .brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:21px;letter-spacing:-0.02em}
   .knot{width:24px;height:24px;position:relative}
@@ -37,16 +36,14 @@
   .knot::before{transform:rotate(45deg)}.knot::after{transform:rotate(-45deg)}
   .tag{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);border:1px solid var(--line);padding:5px 10px;border-radius:999px}
 
-  /* hero */
   .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:46px 0 30px}
   .hero h1{font-size:clamp(34px,5vw,56px)}
-  .hero p.lead{font-size:18px;color:#33323a;margin-top:18px;max-width:34ch}
+  .hero p.lead{font-size:18px;color:#33323a;margin-top:18px;max-width:36ch}
   .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;align-items:center}
   .btn{background:var(--ribbon);color:#fff;border:none;font:inherit;font-weight:700;font-size:15px;padding:14px 22px;border-radius:11px;cursor:pointer;text-decoration:none;display:inline-block;transition:background .15s}
   .btn:hover{background:var(--ribbon-d)}
   .note{font-size:13px;color:var(--muted)}
 
-  /* signature : le compositeur de boîte */
   .builder{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 18px 40px -28px rgba(28,27,32,.4)}
   .builder .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
   .builder .head span{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted)}
@@ -64,9 +61,8 @@
   .total .val{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:22px}
   .builder .demo{font-size:12px;color:var(--muted);margin-top:10px}
 
-  /* sections */
   section{padding:54px 0}
-  .sec-h{max-width:40ch}
+  .sec-h{max-width:42ch}
   .sec-h h2{font-size:clamp(26px,3.4vw,36px)}
   .sec-h p{color:var(--muted);margin-top:10px}
   .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
@@ -79,15 +75,14 @@
   .feat h3{font-size:16px;font-weight:700}
   .feat p{font-size:14.5px;color:#44434b;margin-top:3px}
 
-  /* signup */
   .signup{background:var(--ink);color:#fff;border-radius:20px;padding:40px;margin:10px 0}
   .signup h2{font-size:clamp(24px,3vw,32px)}
-  .signup p.sub{color:#c9c6cf;margin-top:10px;max-width:46ch}
+  .signup p.sub{color:#c9c6cf;margin-top:10px;max-width:50ch}
   form{margin-top:24px;display:grid;gap:14px;max-width:460px}
   label{font-size:13px;color:#c9c6cf;display:block;margin-bottom:6px}
   input[type=email],input[type=text],textarea{width:100%;padding:13px 14px;border-radius:10px;border:1px solid #3a3942;background:#26252c;color:#fff;font:inherit;font-size:15px}
   textarea{min-height:84px;resize:vertical;line-height:1.5}
-  input::placeholder{color:#85828c}
+  input::placeholder,textarea::placeholder{color:#85828c}
   .prices{display:flex;gap:9px;flex-wrap:wrap}
   .price{flex:1;min-width:74px;text-align:center;border:1px solid #3a3942;border-radius:10px;padding:12px 6px;cursor:pointer;font-family:"IBM Plex Mono",monospace;transition:.12s}
   .price:hover{border-color:var(--kraft)}
@@ -117,53 +112,53 @@
 
   <div class="top">
     <div class="brand"><span class="knot" aria-hidden="true"></span>Coffret</div>
-    <span class="tag">Accès anticipé · App Shopify</span>
+    <span class="tag">Early access · Shopify app</span>
   </div>
 
   <!-- HERO -->
   <section class="hero" style="padding-top:30px">
     <div>
-      <p class="eyebrow">Bundles & coffrets · Shopify</p>
-      <h1>Laissez vos clients composer leur coffret. Vraiment.</h1>
-      <p class="lead">L'app native de Shopify cale dès qu'un bundle sort du cas le plus simple. Coffret gère le « composez votre boîte », le mix &amp; match et la sélection par collection — proprement, et en français.</p>
+      <p class="eyebrow">Bundles &amp; gift boxes · Shopify</p>
+      <h1>Let customers build their own box. Properly.</h1>
+      <p class="lead">Shopify’s native bundle app stalls the moment you go past the simplest case. Coffret handles build-your-own-box, mix &amp; match, and collection-based picking — cleanly.</p>
       <div class="cta-row">
-        <a href="#rejoindre" class="btn">Rejoindre l'accès anticipé</a>
-        <span class="note">Liste d'attente · lancement 2026 · sans engagement</span>
+        <a href="#join" class="btn">Join the early access</a>
+        <span class="note">Waitlist · launching 2026 · no commitment</span>
       </div>
     </div>
 
-    <!-- SIGNATURE : compositeur de boîte interactif -->
-    <div class="builder" aria-label="Démonstration : composer un coffret">
-      <div class="head"><strong>Composez votre coffret</strong><span id="count">0 / 3 articles</span></div>
-      <div class="box" id="box"><span class="slot-empty" id="empty">Cliquez un produit pour le glisser ici →</span></div>
+    <!-- SIGNATURE: interactive box builder -->
+    <div class="builder" aria-label="Demo: build a box">
+      <div class="head"><strong>Build your box</strong><span id="count">0 / 3 items</span></div>
+      <div class="box" id="box"><span class="slot-empty" id="empty">Click a product to drop it in →</span></div>
       <div class="shelf" id="shelf"></div>
-      <div class="total"><span class="lab">Total du coffret</span><span class="val" id="total">0,00 €</span></div>
-      <p class="demo">Aperçu de ce que vivront vos clients sur la fiche produit. Choisissez jusqu'à 3 articles.</p>
+      <div class="total"><span class="lab">Box total</span><span class="val" id="total">$0.00</span></div>
+      <p class="demo">A preview of what your customers do on the product page. Pick up to 3 items.</p>
     </div>
   </section>
 
-  <!-- PROBLÈME -->
+  <!-- PROBLEM -->
   <section>
     <div class="sec-h">
-      <p class="eyebrow">Ce que vous vivez aujourd'hui</p>
-      <h2>Le bundle natif lâche au pire moment</h2>
-      <p>Trois blocages que les marchands rencontrent dès qu'ils veulent autre chose qu'un simple lot fixe.</p>
+      <p class="eyebrow">What you deal with today</p>
+      <h2>The native bundle breaks at the worst moment</h2>
+      <p>Three blockers merchants hit the moment they want anything beyond a fixed lot.</p>
     </div>
     <div class="grid3">
       <div class="pain">
         <div class="n">01</div>
-        <h3>Mélanger physique et numérique casse le checkout</h3>
-        <p>Dès qu'un coffret combine un produit physique et un fichier, la commande déraille — et le support tarde à aider.</p>
+        <h3>Mixing physical and digital breaks checkout</h3>
+        <p>The moment a box combines a physical product and a file, the order falls apart — and support is slow to help.</p>
       </div>
       <div class="pain">
         <div class="n">02</div>
-        <h3>Pas de « composez votre boîte » par collection</h3>
-        <p>Impossible de laisser le client piocher librement dans une collection. On est coincé sur des lots figés, produit par produit.</p>
+        <h3>No “build your own box” by collection</h3>
+        <p>You can’t let customers freely pick from a collection. You’re stuck with fixed, product-by-product lots.</p>
       </div>
       <div class="pain">
         <div class="n">03</div>
-        <h3>Tarification rigide</h3>
-        <p>Pas de prix dégressif par palier ni de remise dynamique selon le contenu du coffret. Votre panier moyen plafonne.</p>
+        <h3>Rigid pricing</h3>
+        <p>No tiered pricing or dynamic discount based on what’s in the box. Your average order value stalls.</p>
       </div>
     </div>
   </section>
@@ -171,74 +166,82 @@
   <!-- SOLUTION -->
   <section>
     <div class="sec-h">
-      <p class="eyebrow">Ce que fait Coffret</p>
-      <h2>Le coffret, fait correctement</h2>
-      <p>Une app, posée en quelques minutes, qui rend la composition de boîtes simple pour vos clients et fiable pour vous.</p>
+      <p class="eyebrow">What Coffret does</p>
+      <h2>The box, done right</h2>
+      <p>One app, set up in minutes, that makes box-building simple for your customers and reliable for you.</p>
     </div>
     <div style="margin-top:26px">
-      <div class="feat"><div class="ic">⌗</div><div><h3>Composez votre boîte, par collection</h3><p>Le client choisit librement X articles dans une collection que vous définissez.</p></div></div>
-      <div class="feat"><div class="ic">⇄</div><div><h3>Mix &amp; match sans casse</h3><p>Combinez les produits — y compris physique + numérique — sans planter le tunnel de commande.</p></div></div>
-      <div class="feat"><div class="ic">€</div><div><h3>Prix par palier &amp; remises dynamiques</h3><p>Plus la boîte se remplit, plus le tarif s'ajuste à vos règles. Le panier moyen suit.</p></div></div>
-      <div class="feat"><div class="ic">FR</div><div><h3>Pensé et supporté en français</h3><p>Libellés soignés et une vraie réponse, dans votre langue, par quelqu'un qui connaît Shopify.</p></div></div>
+      <div class="feat"><div class="ic">⌗</div><div><h3>Build your box, by collection</h3><p>Customers freely pick a set number of items from a collection you define.</p></div></div>
+      <div class="feat"><div class="ic">⇄</div><div><h3>Mix &amp; match without breaking</h3><p>Combine products — including physical + digital — without breaking the checkout flow.</p></div></div>
+      <div class="feat"><div class="ic">%</div><div><h3>Tiered pricing &amp; dynamic discounts</h3><p>The fuller the box, the more the price adjusts to your rules. Average order value follows.</p></div></div>
+      <div class="feat"><div class="ic">⚡</div><div><h3>Live in minutes</h3><p>Add it to your store and launch your first box today — no theme code, no developer.</p></div></div>
     </div>
   </section>
 
   <!-- SIGNUP / COLD TEST -->
-  <section id="rejoindre">
+  <section id="join">
     <div class="signup">
+<<<<<<< HEAD
       <p class="eyebrow" style="color:#e2b9c3">Soyez prévenu au lancement</p>
       <h2>Les premiers inscrits gardent le tarif fondateur à vie</h2>
       <p class="sub">Coffret est en préparation. Dites-nous le prix mensuel auquel vous l'adopteriez — ça oriente directement ce qu'on construit en premier. Et comme premier inscrit, vous verrouillez le <strong style="color:#fff">tarif fondateur : &minus;50&nbsp;% à vie</strong> sur le futur tarif public, tant que vous restez abonné.</p>
       <form id="form" action="https://formspree.io/f/xeewnzoo" method="POST" novalidate>
         <!-- Anti-spam : ne pas remplir, ne pas supprimer -->
+=======
+      <p class="eyebrow" style="color:#e2b9c3">Be first to know at launch</p>
+      <h2>Early adopters keep the founder price for life</h2>
+      <p class="sub">Coffret is in the works. Tell us the monthly price you’d adopt it at — it directly shapes what we build first. And as an early signup, you lock in the <strong style="color:#fff">founder price: &minus;50% for life</strong> on the future public price, as long as you stay subscribed.</p>
+      <form id="form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" novalidate>
+        <!-- Anti-spam: leave empty, don't remove -->
+>>>>>>> 6715541 (replaced index.html)
         <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input type="hidden" name="_subject" value="Coffret — nouvelle inscription accès anticipé">
+        <input type="hidden" name="_subject" value="Coffret — new early-access signup">
         <div>
-          <label for="email">Votre e-mail</label>
-          <input type="email" id="email" name="email" placeholder="vous@boutique.fr" required>
+          <label for="email">Your email</label>
+          <input type="email" id="email" name="email" placeholder="you@yourstore.com" required>
         </div>
         <div>
-          <label for="shop">Adresse de votre boutique (facultatif)</label>
-          <input type="text" id="shop" name="shop" placeholder="maboutique.myshopify.com">
+          <label for="shop">Your store address (optional)</label>
+          <input type="text" id="shop" name="shop" placeholder="mystore.myshopify.com">
         </div>
         <div>
-          <label>À quel prix mensuel l'adopteriez-vous ?</label>
+          <label>What monthly price would you adopt it at?</label>
           <div class="prices" id="prices">
-            <div class="price" data-v="12">12 €<small>Starter</small></div>
-            <div class="price" data-v="19">19 €<small>Standard</small></div>
-            <div class="price" data-v="29">29 €<small>Pro</small></div>
-            <div class="price" data-v="49">49 €<small>Volume</small></div>
+            <div class="price" data-v="12">$12<small>Starter</small></div>
+            <div class="price" data-v="19">$19<small>Standard</small></div>
+            <div class="price" data-v="29">$29<small>Pro</small></div>
+            <div class="price" data-v="49">$49<small>Volume</small></div>
           </div>
         </div>
         <div>
-          <label for="besoin">Un besoin, une crainte, ou une idée pour le coffret ? (facultatif)</label>
-          <textarea id="besoin" name="besoin" placeholder="Ex. : je vends des coffrets cadeaux et mélanger un produit physique avec une carte numérique me bloque aujourd'hui…"></textarea>
+          <label for="besoin">A specific need, a worry, or an idea for the box? (optional)</label>
+          <textarea id="besoin" name="besoin" placeholder="e.g. I sell gift boxes and mixing a physical product with a digital card blocks me today…"></textarea>
         </div>
         <input type="hidden" name="prix_mensuel" id="prix_field">
-        <button type="submit" class="btn">Rejoindre l'accès anticipé</button>
-        <p class="note" style="color:#9b98a2">Pas de spam. Un seul e-mail : celui du lancement.</p>
-        <div class="ok-msg" id="ok" aria-live="polite">C'est noté. Vous serez prévenu au lancement, et vous gardez le tarif fondateur : &minus;50&nbsp;% à vie.</div>
-        <div class="err-msg" id="err" aria-live="polite">L'envoi a échoué. Vérifiez votre connexion et réessayez.</div>
+        <button type="submit" class="btn">Join the early access</button>
+        <p class="note" style="color:#9b98a2">No spam. One email: the launch.</p>
+        <div class="ok-msg" id="ok" aria-live="polite">Got it. You’ll be first to know at launch, and you keep the founder price: &minus;50% for life.</div>
+        <div class="err-msg" id="err" aria-live="polite">Something went wrong. Check your connection and try again.</div>
       </form>
     </div>
   </section>
 
   <footer>
     <div class="wrap" style="padding:0">
-      <span><strong>Coffret</strong> — produit indépendant en préparation · 2026</span>
-      <span>Non affilié à Shopify.</span>
+      <span><strong>Coffret</strong> — independent product in the works · 2026</span>
+      <span>Not affiliated with Shopify.</span>
     </div>
   </footer>
 </div>
 
 <script>
-  // --- Compositeur de coffret (signature interactive) ---
-  const items=[["Bougie",14.0],["Savon",8.5],["Café 250g",9.0],["Tisane",7.5],["Carnet",12.0],["Miel",6.5]];
+  // --- Box builder (interactive signature) ---
+  const items=[["Candle",14.0],["Soap",8.5],["Coffee 250g",9.0],["Tea",7.5],["Notebook",12.0],["Honey",6.5]];
   const MAX=3;
   const shelf=document.getElementById('shelf'),box=document.getElementById('box'),
         empty=document.getElementById('empty'),total=document.getElementById('total'),count=document.getElementById('count');
   let chosen=[];
-  function euro(n){return n.toFixed(2).replace('.',',')+' \u20AC';}
+  function usd(n){return '$'+n.toFixed(2);}
   function render(){
     [...box.querySelectorAll('.initem')].forEach(e=>e.remove());
     empty.style.display=chosen.length?'none':'block';
@@ -248,12 +251,12 @@
       box.appendChild(d);
     });
     const sum=chosen.reduce((s,idx)=>s+items[idx][1],0);
-    total.textContent=euro(sum);
-    count.textContent=chosen.length+' / '+MAX+' articles';
+    total.textContent=usd(sum);
+    count.textContent=chosen.length+' / '+MAX+' items';
     [...shelf.children].forEach((c,i)=>c.classList.toggle('added',chosen.includes(i)));
   }
   items.forEach((it,i)=>{
-    const c=document.createElement('div');c.className='chip';c.textContent=it[0]+' · '+euro(it[1]);
+    const c=document.createElement('div');c.className='chip';c.textContent=it[0]+' · '+usd(it[1]);
     c.onclick=()=>{const p=chosen.indexOf(i);
       if(p>-1)chosen.splice(p,1);else if(chosen.length<MAX)chosen.push(i);render();};
     shelf.appendChild(c);
@@ -261,15 +264,15 @@
   box.addEventListener('click',e=>{if(e.target.classList.contains('x')){chosen.splice(+e.target.dataset.i,1);render();}});
   render();
 
-  // --- Sélecteur de prix (signal de willingness-to-pay) ---
+  // --- Price selector (willingness-to-pay signal) ---
   let price=null;
   document.querySelectorAll('#prices .price').forEach(p=>{
     p.onclick=()=>{document.querySelectorAll('#prices .price').forEach(x=>x.classList.remove('sel'));
       p.classList.add('sel');price=p.dataset.v;document.getElementById('prix_field').value=price;};
   });
 
-  // --- Envoi du cold test vers Formspree (AJAX, confirmation en page) ---
-  // 1) Crée un formulaire sur formspree.io  2) remplace VOTRE_ID_FORMSPREE dans l'attribut action ci-dessus.
+  // --- Cold-test submit to Formspree (AJAX, in-page confirmation) ---
+  // 1) Create a form at formspree.io  2) replace YOUR_FORMSPREE_ID in the action above.
   const form=document.getElementById('form');
   form.addEventListener('submit',async e=>{
     e.preventDefault();
@@ -277,17 +280,17 @@
     const email=document.getElementById('email').value.trim();
     if(!email||!email.includes('@')){document.getElementById('email').focus();return;}
     if(!price){document.getElementById('prices').scrollIntoView({block:'center'});
-      document.getElementById('err').textContent='Choisissez un prix pour valider.';
+      document.getElementById('err').textContent='Pick a price to continue.';
       document.getElementById('err').style.display='block';return;}
-    const btn=form.querySelector('button');btn.disabled=true;btn.textContent='Envoi…';
+    const btn=form.querySelector('button');btn.disabled=true;btn.textContent='Sending…';
     try{
       const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
       if(res.ok){[...form.children].forEach(el=>{if(el.id!=='ok'&&el.id!=='err')el.style.display='none';});
         document.getElementById('ok').style.display='block';}
       else{throw new Error('formspree');}
     }catch(err){
-      document.getElementById('err').textContent="L'envoi a échoué. Vérifiez votre connexion et réessayez.";
-      document.getElementById('err').style.display='block';btn.disabled=false;btn.textContent="Rejoindre l'accès anticipé";
+      document.getElementById('err').textContent='Something went wrong. Check your connection and try again.';
+      document.getElementById('err').style.display='block';btn.disabled=false;btn.textContent='Join the early access';
     }
   });
 </script>
