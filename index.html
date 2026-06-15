@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffret — le bundle « compose ta boîte » que Shopify ne sait pas faire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C1B20;
+    --paper:#EFEAE1;      /* greige chaud, pas le cream par défaut */
+    --card:#FFFFFF;
+    --kraft:#CBA47B;      /* matière carton/boîte */
+    --kraft-d:#A9824F;
+    --ribbon:#9E2B45;     /* unique accent fort : le ruban */
+    --ribbon-d:#7E1F36;
+    --muted:#6B6760;
+    --line:#DDD6CB;
+    --ok:#2F6B4F;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Schibsted Grotesk",system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+  .mono{font-family:"IBM Plex Mono",monospace}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ribbon-d)}
+  h1,h2,h3{line-height:1.04;letter-spacing:-0.02em;font-weight:800}
+
+  /* top */
+  .top{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:21px;letter-spacing:-0.02em}
+  .knot{width:24px;height:24px;position:relative}
+  .knot::before,.knot::after{content:"";position:absolute;inset:0;background:var(--ribbon);border-radius:3px}
+  .knot::before{transform:rotate(45deg)}.knot::after{transform:rotate(-45deg)}
+  .tag{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);border:1px solid var(--line);padding:5px 10px;border-radius:999px}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:46px 0 30px}
+  .hero h1{font-size:clamp(34px,5vw,56px)}
+  .hero p.lead{font-size:18px;color:#33323a;margin-top:18px;max-width:34ch}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;align-items:center}
+  .btn{background:var(--ribbon);color:#fff;border:none;font:inherit;font-weight:700;font-size:15px;padding:14px 22px;border-radius:11px;cursor:pointer;text-decoration:none;display:inline-block;transition:background .15s}
+  .btn:hover{background:var(--ribbon-d)}
+  .note{font-size:13px;color:var(--muted)}
+
+  /* signature : le compositeur de boîte */
+  .builder{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 18px 40px -28px rgba(28,27,32,.4)}
+  .builder .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+  .builder .head span{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted)}
+  .box{border:2px dashed var(--kraft);background:linear-gradient(180deg,#fbf6ee,#f3e9da);border-radius:12px;min-height:104px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+  .slot-empty{color:var(--kraft-d);font-family:"IBM Plex Mono",monospace;font-size:12.5px;margin:auto}
+  .initem{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:13px;display:flex;align-items:center;gap:7px}
+  .initem b{font-weight:600}
+  .x{color:var(--muted);cursor:pointer;font-family:"IBM Plex Mono",monospace}
+  .shelf{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;font-size:13px;cursor:pointer;transition:.12s;user-select:none}
+  .chip:hover{border-color:var(--kraft-d)}
+  .chip.added{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .total{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+  .total .lab{font-size:13px;color:var(--muted)}
+  .total .val{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:22px}
+  .builder .demo{font-size:12px;color:var(--muted);margin-top:10px}
+
+  /* sections */
+  section{padding:54px 0}
+  .sec-h{max-width:40ch}
+  .sec-h h2{font-size:clamp(26px,3.4vw,36px)}
+  .sec-h p{color:var(--muted);margin-top:10px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+  .pain{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .pain .n{font-family:"IBM Plex Mono",monospace;color:var(--ribbon);font-size:13px}
+  .pain h3{font-size:17px;margin:8px 0 7px;font-weight:700}
+  .pain p{font-size:14.5px;color:#44434b}
+  .feat{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .feat .ic{flex:0 0 34px;height:34px;border-radius:9px;background:var(--paper);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ribbon);font-family:"IBM Plex Mono",monospace;font-size:13px}
+  .feat h3{font-size:16px;font-weight:700}
+  .feat p{font-size:14.5px;color:#44434b;margin-top:3px}
+
+  /* signup */
+  .signup{background:var(--ink);color:#fff;border-radius:20px;padding:40px;margin:10px 0}
+  .signup h2{font-size:clamp(24px,3vw,32px)}
+  .signup p.sub{color:#c9c6cf;margin-top:10px;max-width:46ch}
+  form{margin-top:24px;display:grid;gap:14px;max-width:460px}
+  label{font-size:13px;color:#c9c6cf;display:block;margin-bottom:6px}
+  input[type=email],input[type=text]{width:100%;padding:13px 14px;border-radius:10px;border:1px solid #3a3942;background:#26252c;color:#fff;font:inherit;font-size:15px}
+  input::placeholder{color:#85828c}
+  .prices{display:flex;gap:9px;flex-wrap:wrap}
+  .price{flex:1;min-width:74px;text-align:center;border:1px solid #3a3942;border-radius:10px;padding:12px 6px;cursor:pointer;font-family:"IBM Plex Mono",monospace;transition:.12s}
+  .price:hover{border-color:var(--kraft)}
+  .price.sel{background:var(--ribbon);border-color:var(--ribbon);color:#fff}
+  .price small{display:block;font-family:"Schibsted Grotesk";font-size:11px;color:#c9c6cf;margin-top:3px}
+  .price.sel small{color:#f3d9df}
+  .signup .btn{background:#fff;color:var(--ink)}
+  .signup .btn:hover{background:#eee}
+  .ok-msg{display:none;background:#26352c;border:1px solid var(--ok);color:#bfe6cf;padding:13px 15px;border-radius:10px;font-size:14px;margin-top:6px}
+  .err-msg{display:none;background:#3a2326;border:1px solid var(--ribbon);color:#f0c4cc;padding:13px 15px;border-radius:10px;font-size:14px;margin-top:6px}
+
+  footer{padding:34px 0 50px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  @media(max-width:820px){
+    .hero{grid-template-columns:1fr;gap:30px;padding-top:30px}
+    .hero p.lead{max-width:none}
+    .grid3{grid-template-columns:1fr}
+    .signup{padding:28px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  :focus-visible{outline:3px solid var(--kraft);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand"><span class="knot" aria-hidden="true"></span>Coffret</div>
+    <span class="tag">Accès anticipé · App Shopify</span>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" style="padding-top:30px">
+    <div>
+      <p class="eyebrow">Bundles & coffrets · Shopify</p>
+      <h1>Laissez vos clients composer leur coffret. Vraiment.</h1>
+      <p class="lead">L'app native de Shopify cale dès qu'un bundle sort du cas le plus simple. Coffret gère le « composez votre boîte », le mix &amp; match et la sélection par collection — proprement, et en français.</p>
+      <div class="cta-row">
+        <a href="#rejoindre" class="btn">Rejoindre l'accès anticipé</a>
+        <span class="note">Liste d'attente · lancement 2026 · sans engagement</span>
+      </div>
+    </div>
+
+    <!-- SIGNATURE : compositeur de boîte interactif -->
+    <div class="builder" aria-label="Démonstration : composer un coffret">
+      <div class="head"><strong>Composez votre coffret</strong><span id="count">0 / 3 articles</span></div>
+      <div class="box" id="box"><span class="slot-empty" id="empty">Cliquez un produit pour le glisser ici →</span></div>
+      <div class="shelf" id="shelf"></div>
+      <div class="total"><span class="lab">Total du coffret</span><span class="val" id="total">0,00 €</span></div>
+      <p class="demo">Aperçu de ce que vivront vos clients sur la fiche produit. Choisissez jusqu'à 3 articles.</p>
+    </div>
+  </section>
+
+  <!-- PROBLÈME -->
+  <section>
+    <div class="sec-h">
+      <p class="eyebrow">Ce que vous vivez aujourd'hui</p>
+      <h2>Le bundle natif lâche au pire moment</h2>
+      <p>Trois blocages que les marchands rencontrent dès qu'ils veulent autre chose qu'un simple lot fixe.</p>
+    </div>
+    <div class="grid3">
+      <div class="pain">
+        <div class="n">01</div>
+        <h3>Mélanger physique et numérique casse le checkout</h3>
+        <p>Dès qu'un coffret combine un produit physique et un fichier, la commande déraille — et le support tarde à aider.</p>
+      </div>
+      <div class="pain">
+        <div class="n">02</div>
+        <h3>Pas de « composez votre boîte » par collection</h3>
+        <p>Impossible de laisser le client piocher librement dans une collection. On est coincé sur des lots figés, produit par produit.</p>
+      </div>
+      <div class="pain">
+        <div class="n">03</div>
+        <h3>Tarification rigide</h3>
+        <p>Pas de prix dégressif par palier ni de remise dynamique selon le contenu du coffret. Votre panier moyen plafonne.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section>
+    <div class="sec-h">
+      <p class="eyebrow">Ce que fait Coffret</p>
+      <h2>Le coffret, fait correctement</h2>
+      <p>Une app, posée en quelques minutes, qui rend la composition de boîtes simple pour vos clients et fiable pour vous.</p>
+    </div>
+    <div style="margin-top:26px">
+      <div class="feat"><div class="ic">⌗</div><div><h3>Composez votre boîte, par collection</h3><p>Le client choisit librement X articles dans une collection que vous définissez.</p></div></div>
+      <div class="feat"><div class="ic">⇄</div><div><h3>Mix &amp; match sans casse</h3><p>Combinez les produits — y compris physique + numérique — sans planter le tunnel de commande.</p></div></div>
+      <div class="feat"><div class="ic">€</div><div><h3>Prix par palier &amp; remises dynamiques</h3><p>Plus la boîte se remplit, plus le tarif s'ajuste à vos règles. Le panier moyen suit.</p></div></div>
+      <div class="feat"><div class="ic">FR</div><div><h3>Pensé et supporté en français</h3><p>Libellés soignés et une vraie réponse, dans votre langue, par quelqu'un qui connaît Shopify.</p></div></div>
+    </div>
+  </section>
+
+  <!-- SIGNUP / COLD TEST -->
+  <section id="rejoindre">
+    <div class="signup">
+      <p class="eyebrow" style="color:#e2b9c3">Soyez prévenu au lancement</p>
+      <h2>Les premiers inscrits auront le tarif fondateur</h2>
+      <p class="sub">Coffret est en préparation. Dites-nous à quel prix il vous serait utile — ça oriente directement ce qu'on construit en premier.</p>
+      <form id="form" action="https://formspree.io/f/xeewnzoo" method="POST" novalidate>
+        <!-- Anti-spam : ne pas remplir, ne pas supprimer -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="Coffret — nouvelle inscription accès anticipé">
+        <div>
+          <label for="email">Votre e-mail</label>
+          <input type="email" id="email" name="email" placeholder="vous@boutique.fr" required>
+        </div>
+        <div>
+          <label for="shop">Adresse de votre boutique (facultatif)</label>
+          <input type="text" id="shop" name="shop" placeholder="maboutique.myshopify.com">
+        </div>
+        <div>
+          <label>À quel prix mensuel l'adopteriez-vous ?</label>
+          <div class="prices" id="prices">
+            <div class="price" data-v="12">12 €<small>Starter</small></div>
+            <div class="price" data-v="19">19 €<small>Standard</small></div>
+            <div class="price" data-v="29">29 €<small>Pro</small></div>
+            <div class="price" data-v="49">49 €<small>Volume</small></div>
+          </div>
+        </div>
+        <input type="hidden" name="prix_mensuel" id="prix_field">
+        <button type="submit" class="btn">Rejoindre l'accès anticipé</button>
+        <p class="note" style="color:#9b98a2">Pas de spam. Un seul e-mail : celui du lancement.</p>
+        <div class="ok-msg" id="ok" aria-live="polite">C'est noté. Vous serez parmi les premiers prévenus, avec le tarif fondateur.</div>
+        <div class="err-msg" id="err" aria-live="polite">L'envoi a échoué. Vérifiez votre connexion et réessayez.</div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap" style="padding:0">
+      <span><strong>Coffret</strong> — produit indépendant en préparation · 2026</span>
+      <span>Non affilié à Shopify.</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // --- Compositeur de coffret (signature interactive) ---
+  const items=[["Bougie",14.0],["Savon",8.5],["Café 250g",9.0],["Tisane",7.5],["Carnet",12.0],["Miel",6.5]];
+  const MAX=3;
+  const shelf=document.getElementById('shelf'),box=document.getElementById('box'),
+        empty=document.getElementById('empty'),total=document.getElementById('total'),count=document.getElementById('count');
+  let chosen=[];
+  function euro(n){return n.toFixed(2).replace('.',',')+' \u20AC';}
+  function render(){
+    [...box.querySelectorAll('.initem')].forEach(e=>e.remove());
+    empty.style.display=chosen.length?'none':'block';
+    chosen.forEach((idx,i)=>{
+      const d=document.createElement('div');d.className='initem';
+      d.innerHTML='<b>'+items[idx][0]+'</b> <span class="x" data-i="'+i+'">\u00D7</span>';
+      box.appendChild(d);
+    });
+    const sum=chosen.reduce((s,idx)=>s+items[idx][1],0);
+    total.textContent=euro(sum);
+    count.textContent=chosen.length+' / '+MAX+' articles';
+    [...shelf.children].forEach((c,i)=>c.classList.toggle('added',chosen.includes(i)));
+  }
+  items.forEach((it,i)=>{
+    const c=document.createElement('div');c.className='chip';c.textContent=it[0]+' · '+euro(it[1]);
+    c.onclick=()=>{const p=chosen.indexOf(i);
+      if(p>-1)chosen.splice(p,1);else if(chosen.length<MAX)chosen.push(i);render();};
+    shelf.appendChild(c);
+  });
+  box.addEventListener('click',e=>{if(e.target.classList.contains('x')){chosen.splice(+e.target.dataset.i,1);render();}});
+  render();
+
+  // --- Sélecteur de prix (signal de willingness-to-pay) ---
+  let price=null;
+  document.querySelectorAll('#prices .price').forEach(p=>{
+    p.onclick=()=>{document.querySelectorAll('#prices .price').forEach(x=>x.classList.remove('sel'));
+      p.classList.add('sel');price=p.dataset.v;document.getElementById('prix_field').value=price;};
+  });
+
+  // --- Envoi du cold test vers Formspree (AJAX, confirmation en page) ---
+  // 1) Crée un formulaire sur formspree.io  2) remplace VOTRE_ID_FORMSPREE dans l'attribut action ci-dessus.
+  const form=document.getElementById('form');
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    document.getElementById('err').style.display='none';
+    const email=document.getElementById('email').value.trim();
+    if(!email||!email.includes('@')){document.getElementById('email').focus();return;}
+    if(!price){document.getElementById('prices').scrollIntoView({block:'center'});
+      document.getElementById('err').textContent='Choisissez un prix pour valider.';
+      document.getElementById('err').style.display='block';return;}
+    const btn=form.querySelector('button');btn.disabled=true;btn.textContent='Envoi…';
+    try{
+      const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+      if(res.ok){document.getElementById('ok').style.display='block';
+        form.querySelectorAll('input,button,.prices').forEach(el=>el.style.display='none');}
+      else{throw new Error('formspree');}
+    }catch(err){
+      document.getElementById('err').textContent="L'envoi a échoué. Vérifiez votre connexion et réessayez.";
+      document.getElementById('err').style.display='block';btn.disabled=false;btn.textContent="Rejoindre l'accès anticipé";
+    }
+  });
+</script>
+</body>
+</html>
